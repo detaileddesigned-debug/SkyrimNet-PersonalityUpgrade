@@ -1,0 +1,198 @@
+﻿SKYRIMNET PERSONALITY UPGRADE — IMPLEMENTATION PHASES
+=====================================================
+
+Phase 1 — Core psychology prompt layer
+--------------------------------------
+Goal: make NPC reasoning use subjective appraisal instead of shallow event -> emotion mapping.
+
+Implement the additive SkyrimNet guideline module(s) first, probably under:
+SKSE/Plugins/SkyrimNet/prompts/submodules/guidelines/
+
+This phase should cover:
+- subjective appraisal;
+- same event -> different meaning for different NPCs;
+- personality/history/relationship shaping interpretation;
+- mixed emotions;
+- psychological continuity;
+- no arbitrary emotional resets;
+- agreement/disagreement as outcomes, not goals;
+- indirect behavioral expression;
+- reasoning principles, not a visible checklist.
+
+Likely file:
+0600_psychological_realism.prompt
+
+Success criteria:
+NPC dialogue/thoughts should feel more individually motivated without yet changing IntelEngine event generation.
+
+
+Phase 2 — Epistemic boundaries and mind privacy
+-----------------------------------------------
+Goal: make the model distinguish what a character truly knows from what they infer.
+
+Implement the second additive guideline covering:
+- own personality is private/self-knowledge;
+- other NPCs are inferred from observation;
+- player has no canonical personality sheet;
+- objective events vs perceptible affect vs interpretation vs deeper theory;
+- attributed subjectivity;
+- public summaries are evidence/reputation, not guaranteed inner truth;
+- hidden motives must not be inferred as fact merely because they appear plausible.
+
+Likely file:
+0610_epistemic_boundaries.prompt
+
+Important finalized rule:
+"She appeared nervous" can be valid objective/perceptible context when supported by observable behavior.
+"She was intimidated because she is insecure" is interpretation/deeper theory and should not be shared as objective fact.
+
+Success criteria:
+NPCs can use visible/perceptible emotions but do not treat hidden motives or personality judgments as omniscient facts.
+
+
+Phase 3 — Player information boundary
+-------------------------------------
+Goal: enforce the requirement that the player is the user, with no canonical AI personality sheet.
+
+Start with prompt-level protection rather than renderer surgery.
+
+Rules:
+- NPCs infer the player from speech/actions/history/reputation;
+- generated player personality text is not authoritative;
+- no AI-generated hidden player motive becomes canonical;
+- different NPCs may infer different personalities.
+
+Step 3A:
+Prompt-only protection.
+
+Step 3B:
+Renderer/profile intervention only if testing proves SkyrimNet still leaks configured player personality directly into NPC reasoning.
+
+Success criteria:
+NPCs respond to what the player actually says and does rather than a hidden predefined "true player personality."
+
+
+Phase 4 — Memory and thought continuity
+---------------------------------------
+Goal: make long-term behavior preserve the psychological consequences established in Phases 1-3.
+
+Focus on SkyrimNet memory/thought generation.
+
+Desired conceptual pipeline:
+event -> appraisal -> meaning -> mixed feelings/motives -> emotion metadata
+
+Avoid:
+event -> emotion label -> interpretation
+
+Relevant areas to inspect/test:
+- npc_thoughts.prompt
+- generate_memory.prompt
+- memory_builder.prompt
+- emotional-impact / mood evaluation
+
+If the global guidelines are not enough, add small targeted memory-specific guidance.
+
+The existing SkyrimNet emotion enum can remain. The goal is to change what produces it, not necessarily the storage schema.
+
+Success criteria:
+Memories preserve character-specific adaptation such as "I won't trust them with something private again" rather than only storing shallow labels like "betrayal / angry."
+Later dialogue and behavior should reflect that adaptation.
+
+
+Phase 5 — IntelEngine world/event neutrality
+--------------------------------------------
+Goal: stop hidden psychological causes and narrator judgments from contaminating persistent world facts.
+
+Phase 5A — intel_story_dm.prompt
+This is a required targeted override because inspection found explicit hidden-motive narration such as:
+"followed the player out of jealousy"
+
+Preserve event-selection logic, but change resulting narration semantics.
+
+Private state may choose the event.
+Public output should record only what happened and perceptible presentation.
+
+Phase 5B — intel_story_npc_dm.prompt
+Tighten:
+- NPC-to-NPC facts;
+- gossip;
+- attribution;
+- private relationship labels;
+- subjective claims.
+
+Key rule:
+"Aela thinks Vignar is a coward" must not become "Vignar is a coward" as objective truth.
+
+Success criteria:
+Persistent IntelEngine facts remain observational or clearly attributed.
+
+
+Phase 6 — Political/world knowledge hardening and integration testing
+--------------------------------------------------------------------
+Goal: harden the most authoritative context only after the core system works.
+
+First test whether the global epistemic guideline already gives acceptable behavior in:
+intel_political_dm.prompt
+
+If yes, leave it alone.
+If not, selectively override it.
+
+This phase especially covers:
+- world_knowledge;
+- faction events;
+- leadership decisions;
+- political accusations;
+- betrayal labels;
+- public vs private motives.
+
+Authoritative world knowledge should use the strictest neutrality standard because downstream systems may treat it as truth.
+
+Integration test scenarios:
+
+1. Awkward social event
+- several NPC observers;
+- some may converge on "embarrassing" while others interpret differently;
+- no forced diversity or forced uniformity.
+
+2. Private secret shared
+- world records concrete disclosure;
+- affected NPC may interpret betrayal;
+- unrelated NPCs do not magically inherit the emotional meaning.
+
+3. Jealous follower
+- IntelEngine may choose following because of private jealousy;
+- event log records only the following behavior and perceptible reactions;
+- observers infer motive independently.
+
+4. Gossip
+- one NPC calls another cowardly;
+- receiving NPC stores the claim with attribution rather than objective cowardice.
+
+5. Player behavior
+- repeated player actions cause different NPCs to form different models of the player;
+- no canonical player-personality text dominates.
+
+6. Repair after conflict
+- active anger may fade;
+- learned caution may remain;
+- relationship does not simply reset.
+
+Success criteria:
+The system behaves coherently across dialogue, thoughts, memories, IntelEngine events, gossip, player interpretation, and authoritative world knowledge without unnecessary upstream overrides.
+
+
+Recommended implementation order
+--------------------------------
+1. Psychological realism.
+2. Epistemic boundaries.
+3. Player no-canonical-personality protection.
+4. Thought/memory continuity.
+5. IntelEngine Story DM.
+6. IntelEngine NPC DM / gossip.
+7. Political/world knowledge only if needed.
+8. Integrated behavioral testing.
+
+Reason for this order:
+Establish the general psychology and information rules first. Override upstream prompts only where inspection or testing proves those general rules cannot control the behavior.
+
+This keeps SkyrimNet-PersonalityUpgrade maintainable and avoids turning it into a fork of SkyrimNet or IntelEngine.
