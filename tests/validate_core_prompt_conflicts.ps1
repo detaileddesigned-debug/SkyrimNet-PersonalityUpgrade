@@ -14,6 +14,14 @@ Assert-Contains 'transform-preserves-player-intent' $pd 'The opinion, confidence
 Assert-Contains 'event-trigger-does-not-author-player' $pd 'Do not author speech or actions for the human player from an event trigger.'
 Assert-Contains 'no-input-does-not-author-player' $pd 'No player-authored dialogue was supplied. Do not invent dialogue or actions for the human player.'
 Assert-NotContains 'old-autonomous-player-line-removed' $pd 'Say something aloud'
+$transformIdx = $pd.IndexOf('{% elif length(promptForDialogue) > 0 %}')
+$finalIdx = $pd.IndexOf('{{ render_subcomponent("user_final_instructions", "transform") }}')
+$respondIdx = $pd.IndexOf('Respond in character now.')
+$elseIdx = $pd.IndexOf('{% else %}', $transformIdx)
+if ($transformIdx -lt 0 -or $finalIdx -lt $transformIdx -or $respondIdx -lt $finalIdx -or $elseIdx -lt $respondIdx) {
+    throw 'FAIL [transform-tail-is-branch-local]: final transform instructions must occur inside the player-authored dialogue branch before its else.'
+}
+Write-Output 'PASS [transform-tail-is-branch-local]'
 
 Assert-Contains 'player-choice-profile-not-authority' $pt 'must not be treated as proof of what the player "would really do."'
 Assert-Contains 'player-choice-explicit-intent-strongest' $pt 'preserve that intent as the strongest constraint'
