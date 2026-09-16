@@ -12,6 +12,9 @@
     - Current Location: {{ get_location(npc.UUID) }}
     - Personality: {{ npcPersonality }}
 
+    ## NPC Character Profile
+    {{ render_character_profile("full", npc.UUID) }}
+
     ## Recent Events and Interactions
     {% for event in events %}
         [Event {{ loop.index0 }}] Type: {{ event.type }}

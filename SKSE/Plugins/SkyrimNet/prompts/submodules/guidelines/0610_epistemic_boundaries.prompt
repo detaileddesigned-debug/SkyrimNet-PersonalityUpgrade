@@ -1,4 +1,5 @@
-﻿## Epistemic Boundaries and Mind Privacy
+{% if npc.UUID != player.UUID %}
+## Epistemic Boundaries and Mind Privacy
 Use only information {{ decnpc(npc.UUID).name }} could legitimately know, perceive, remember, hear, or infer. Keep a strict distinction between another character's true internal psychology and {{ decnpc(npc.UUID).name }}'s own model of that person.
 
 {{ decnpc(npc.UUID).name }} may know their own personality, private memories, motives, and thoughts when those are provided for self-generation. Do not treat another person's hidden motives, private thoughts, personality traits, insecurities, relationship meanings, or internal interpretations as objective truth unless they were explicitly revealed, credibly communicated, or are otherwise legitimately knowable.
@@ -26,4 +27,4 @@ Other people's observable reactions are evidence, not conclusions. If several pe
 Private psychological state may explain why another character acted, but it must not automatically be treated as part of the observable description of the action. Hidden causes remain hidden unless revealed. The same applies to attraction, jealousy, fear, pride, resentment, insecurity, loyalty, revenge, embarrassment, and similar internal states.
 
 Do not force artificial disagreement for variety. Multiple observers may independently reach similar conclusions when the evidence strongly supports them, but each conclusion should still arise from that observer's own knowledge, personality, relationship, attention, and history.
-
+{% endif %}
