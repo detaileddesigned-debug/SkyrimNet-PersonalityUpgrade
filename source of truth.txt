@@ -1,0 +1,465 @@
+﻿SKYRIMNET PERSONALITY UPGRADE — SOURCE OF TRUTH
+==============================================
+
+Purpose
+-------
+SkyrimNet-PersonalityUpgrade is a prompt/context-behavior addon for SkyrimNet + IntelEngine. It does not add canned personality reactions, relationship meters, or a scripted social simulation. Its purpose is to make NPC reasoning psychologically coherent and epistemically grounded.
+
+Central psychological principle:
+DO NOT MERELY IDENTIFY AN EMOTION. SIMULATE THE SUBJECTIVE MEANING THAT PRODUCED IT.
+
+Central information principle:
+LET HIDDEN PSYCHOLOGY INFLUENCE BEHAVIOR WITHOUT AUTOMATICALLY LEAKING THAT HIDDEN PSYCHOLOGY INTO SHARED/EXTERNAL DESCRIPTIONS.
+
+The player has no canonical AI-authored personality sheet. NPCs infer the player from observed speech, actions, reputation, hearsay, and accumulated experience.
+
+1. CORE PSYCHOLOGICAL MODEL
+---------------------------
+Avoid shallow mappings such as:
+player lied -> betrayal -> anger -> trust -20
+
+Instead, socially meaningful events are appraised through the individual NPC's point of view. The reasoning should implicitly consider:
+- What did the character perceive happened?
+- What did they expect instead?
+- What meaning do they assign to the other person's behavior?
+- What does it suggest about that person's intentions, reliability, competence, loyalty, attraction, regard, etc.?
+- What does it suggest about the character themself?
+- What does it imply about their relationship?
+- Which memories, expectations, beliefs, insecurities, values, attachment tendencies, pride, fears, or previous experiences does it confirm, contradict, or reactivate?
+- What mixture of feelings follows?
+- What does the character now want: closeness, reassurance, distance, repair, retaliation, understanding, concealment, control, approval, escape, etc.?
+- What parts would this character actually reveal?
+
+These are reasoning principles, not a visible checklist. Thoughts and dialogue must still sound like the character.
+
+Bad: "Relationship implication: trust has decreased."
+Good: "I handed him something private and he passed it on like it meant nothing. I won't make that mistake twice."
+
+2. EVENT DOES NOT DIRECTLY DETERMINE REACTION
+----------------------------------------------
+The same event can produce different meanings depending on personality, history, relationship, expectations, culture, insecurity, values, and circumstances.
+
+Example: the player behaves awkwardly around someone they like.
+Possible interpretations include disillusionment, unease, affection, indifference, or tolerant attachment.
+
+The mod must not hardcode one result such as "awkward behavior lowers attraction."
+
+Conceptual model:
+event × beliefs × personality × memories × expectations × relationship × situation -> appraisal -> feelings/motives -> expression/behavior
+
+3. AGREEMENT / PEOPLE-PLEASING
+-------------------------------
+Do not use a large anti-people-pleasing rule set. That risks artificial disagreement, coldness, refusal, distrust, or hostility.
+
+Agreement and disagreement are outcomes, not goals. An NPC may agree, reassure, forgive, accommodate, seek approval, or submit when those responses genuinely follow from their psychology.
+
+Priority rule:
+Follow the character's psychologically inferred beliefs, motives, feelings, and inclinations strongly, even when they conflict with what another person wants or believes. Do not alter them merely to preserve agreement, harmony, or approval.
+
+Compact principle:
+DO NOT OPTIMIZE FOR AGREEMENT OR DISAGREEMENT. OPTIMIZE FOR PSYCHOLOGICAL CONTINUITY.
+
+4. PSYCHOLOGICAL CONTINUITY AND ACCUMULATED IMPRESSIONS
+--------------------------------------------------------
+Relationships should evolve through accumulated impressions and experiences rather than arbitrary emotional reversals.
+
+A character may gradually lose interest without consciously deciding "I dislike this person now." Instead they may initiate less, ask fewer follow-up questions, disclose less, become less curious, find conversations less rewarding, respond more politely than warmly, notice flaws more readily, or invest attention elsewhere.
+
+Love can coexist with resentment. Attraction can survive embarrassment. Trust can survive anger. Forgiveness does not necessarily restore vulnerability. Respect can coexist with dislike.
+
+When an event changes how a character sees someone, preserve that interpretation until later evidence gives a credible reason to revise it. Repair does not imply a reset.
+
+5. PERSONALITY SHAPES APPRAISAL AND DEFENSE, NOT SCRIPTED OUTCOMES
+------------------------------------------------------------------
+Avoid deterministic formulas such as:
+proud NPC + betrayal = cold response
+
+Personality should alter how the event is interpreted, felt, managed, and expressed.
+
+After the same perceived betrayal:
+- a proud NPC may conceal hurt and become cold;
+- an anxious NPC may seek reassurance;
+- a suspicious NPC may treat it as confirmation of an old belief;
+- a hot-headed NPC may confront immediately;
+- a dependent NPC may rationalize it because losing the relationship feels worse;
+- a secure NPC may confront clearly and later repair the relationship.
+
+These are tendencies, not hard rules.
+
+6. INTERNAL PSYCHOLOGY VS EXTERNAL EXPRESSION
+----------------------------------------------
+Characters should not constantly explain their psychology in dialogue.
+
+Changing attitudes should often appear indirectly through warmth or distance, attention, curiosity, hesitation, humor, patience, formality, avoidance, initiative, hostility, affection, self-disclosure, and willingness to be vulnerable.
+
+A character may not consciously understand exactly why their attitude changed. Private thoughts may contain richer appraisal than spoken dialogue. Spoken behavior should reflect only what the character would actually reveal.
+
+7. NPC TRUE SELF VS OTHER PEOPLE'S MODELS
+-----------------------------------------
+An NPC's own generation may receive its true personality sheet, private memories, internal motives, and private thoughts.
+
+Other NPCs must not receive that hidden psychology as objective truth.
+
+Observers should learn about another NPC through what they personally saw, heard, experienced, remembered, learned through reputation or credible hearsay, and inferred themselves.
+
+Two NPCs may form different models of the same person from the same behavior. These models may be wrong.
+
+Example: Lydia's private personality may say she is proud and emotionally reserved. Mjoll should not be handed that sentence. Mjoll may observe curt speech, protective behavior, avoidance of personal questions, and low social initiative, then infer that Lydia may be guarded rather than unfriendly. Another NPC may infer something else.
+
+Never expose one character's inferred psychological traits to another as objective truth unless legitimately communicated or otherwise knowable.
+
+8. PLAYER HAS NO CANONICAL PERSONALITY SHEET
+---------------------------------------------
+For this mod's intended setup, the player is the user. There is no canonical AI-authored player personality.
+
+NPCs should infer the player from actual spoken/typed dialogue, actual gameplay actions, promises kept or broken, repeated behavior, consequences of choices, treatment of people, personal observation, plausible hearsay, public reputation where appropriate, and remembered interactions.
+
+A generated/configured player bio or personality description must not be treated as the player's true inner self.
+
+Different NPCs may legitimately infer different personalities from the same player behavior. There is no global objective answer declaring which interpretation is correct.
+
+The system must not invent hidden player feelings or motives and present them as canonical truth.
+
+9. OBJECTIVE EVENTS, PERCEPTIBLE AFFECT, AND INTERPRETATION
+-----------------------------------------------------------
+The external/world layer should be observationally grounded, but observable is broader than physical motion only.
+
+Perceptible emotional state is allowed when it is actually perceivable from behavior, voice, animation, known game state, or other sensory evidence.
+
+Valid external/perceptual descriptions include:
+- "She looked away when he addressed her."
+- "She appeared nervous and repeatedly avoided eye contact."
+- "His voice shook."
+- "He sounded angry."
+- "She laughed after he fell."
+
+The forbidden leap is to hidden causes, moral evaluation, enduring personality claims, or imposed social meaning.
+
+Invalid as objective narration:
+- "She was intimidated by him." (interpretation)
+- "She is insecure around authority." (deeper trait/theory)
+- "He cowardly fled." (moral/social judgment)
+- "She cruelly humiliated him." (moral/social interpretation)
+- "He followed the player out of jealousy." (hidden motive)
+- "She betrayed him." when the underlying action can be stated concretely and betrayal is the observer's judgment.
+
+Prefer concrete descriptions such as:
+- "He ran from the courtyard while three allies remained fighting."
+- "She called him incompetent in front of three guards."
+- "She told the Jarl information he had asked her to keep private."
+
+Then individual NPCs infer cowardice, cruelty, betrayal, embarrassment, respect, etc. themselves.
+
+10. FOUR INFORMATION LEVELS
+---------------------------
+A. Objective / externally recordable event
+"She looked away when he spoke."
+
+B. Perceptible affect
+"She appeared nervous and repeatedly looked away."
+
+C. Observer interpretation
+"She must be intimidated by him."
+
+D. Deeper psychological theory
+"Authority figures make her insecure because she fears humiliation."
+
+A and B can enter shared/perceptual context when supported by observation. C and D belong to an individual's reasoning unless explicitly spoken, credibly communicated, or otherwise made knowable.
+
+11. PRIVATE CAUSE MAY DRIVE SIMULATION WITHOUT BECOMING PUBLIC DESCRIPTION
+-------------------------------------------------------------------------
+Hard rule:
+PRIVATE PSYCHOLOGICAL STATE MAY DETERMINE WHAT A CHARACTER DOES, BUT IT MUST NOT AUTOMATICALLY BECOME PART OF THE OBSERVABLE DESCRIPTION OF WHAT THEY DID.
+
+Example:
+Private cause: "She follows the player because she is jealous."
+World event: "She followed the player from the inn to the city gate and hid when they turned around."
+Observer A: "She's jealous."
+Observer B: "Maybe she suspects them of something."
+Observer C: "That's unsettling."
+
+Her own private thought may know the actual motive if appropriate.
+
+The simulation engine may use hidden state to choose what happens. The resulting event must not automatically expose that hidden state as public explanation.
+
+12. NATURAL CONVERGENCE IS ALLOWED
+----------------------------------
+Do not force NPCs to disagree merely for variety.
+
+Multiple NPCs may independently reach the same interpretation when evidence strongly supports it. Several may all decide that something was embarrassing, suspicious, impressive, or cruel.
+
+What should remain individualized is the reasoning path, meaning, intensity, emotional mixture, and downstream behavior.
+
+Interpretation convergence is not psychological convergence.
+
+Example: several NPCs may all think an incident was embarrassing while one loses attraction, one feels sympathy, one finds it endearing, one feels second-hand embarrassment, and another respects how calmly the person recovered.
+
+13. OTHER PEOPLE'S REACTIONS ARE OBSERVABLE EVIDENCE
+-----------------------------------------------------
+Social consensus may influence later interpretation, but through observable reactions rather than omniscient narration.
+
+Good:
+"Three guards laughed after he fell. One person looked away. The Thane paused before continuing."
+
+Bad:
+"Everyone found the incident humiliating."
+
+An NPC may observe the laughter and revise their own interpretation. That is psychologically valid because the change comes from evidence they perceived.
+
+14. ATTRIBUTED SUBJECTIVITY IS VALID
+------------------------------------
+Subjective language is allowed when attribution is preserved.
+
+Bad authoritative fact:
+"Vignar is a coward."
+
+Valid attributed fact:
+"Aela told Ria that she thought Vignar fled out of cowardice."
+
+Likewise:
+"He cruelly insulted her" is not neutral world narration.
+"She described his words as cruel" is a valid fact about her judgment.
+
+This distinction is essential for gossip, testimony, reputation, and political accusations.
+
+15. ADDITIVE PSYCHOLOGY VS TARGETED OVERRIDES
+---------------------------------------------
+SkyrimNet already has broad roleplay guidance telling the model to embody the NPC using background, personality, goals, relationships, speech style, emotional state, and related context, and to react authentically.
+
+That guidance is shallow because it does not define the psychological process, but it is not contradictory to this mod.
+
+Therefore PersonalityUpgrade should NOT replace compatible broad SkyrimNet roleplay guidance merely because it is less detailed.
+
+Instead, the additive psychology module defines what "react authentically" means: subjective appraisal, continuity, mixed emotions, interpretation through memory and personality, indirect behavioral expression, and independence from agreement-seeking.
+
+SkyrimNet core guidance answers WHAT information should influence the NPC.
+PersonalityUpgrade answers HOW that information should become a psychologically coherent reaction.
+
+Use additive prompt submodules when upstream is compatible but underspecified.
+Use targeted prompt overrides when upstream explicitly creates contradictory semantics such as hidden motives or moral interpretations presented as objective facts.
+
+Avoid replacing large upstream prompts merely to improve wording. This keeps the addon small and update-friendly.
+
+16. SKYRIMNET PROMPT EXTENSION MECHANISM
+----------------------------------------
+SkyrimNet's modding documentation supports numbered prompt submodules. Numeric prefixes determine ordering, and mod-integration ranges exist for addon content.
+
+This allows PersonalityUpgrade to add independent guideline modules rather than replacing SkyrimNet's main dialogue or thought prompts.
+
+Likely files:
+SKSE/Plugins/SkyrimNet/prompts/submodules/guidelines/0600_psychological_realism.prompt
+SKSE/Plugins/SkyrimNet/prompts/submodules/guidelines/0610_epistemic_boundaries.prompt
+
+Exact numbering should load after SkyrimNet's general roleplay guidance.
+
+17. SKYRIMNET SELF VS DIALOGUE TARGET
+-------------------------------------
+SkyrimNet already renders the active NPC with a full/self-facing profile and conversation targets with dialogue_target mode.
+
+The explicit personality/psychology block is already restricted to self-facing modes rather than being directly exposed to dialogue targets.
+
+This is compatible with the intended privacy rule and should be strengthened, not rebuilt.
+
+18. PUBLIC SUMMARY / SHORT-INLINE LEAKAGE RISK
+----------------------------------------------
+SkyrimNet's public summary is rendered in multiple modes, including dialogue-target and short-inline contexts.
+
+Its dynamic bio system already contains a strong Stranger Test: public summary/appearance information should contain only what a stranger could observe or know through public reputation. Private thoughts, hidden motivations, secret backstory, and insider knowledge should not belong there.
+
+However, actual static/generated content can still violate this ideal.
+
+Therefore public summaries should be treated as externally available description/reputation, not privileged access to another person's hidden mind. Psychological claims about another person must not automatically become guaranteed inner truth unless the observer has legitimate knowledge of them.
+
+short_inline rendering also appears in nearby-NPC context, speaker selection, gamemaster planning/action selection, memory generation, and some player-related prompts, so it is another path where overly private summaries could leak.
+
+19. MEMORY SYSTEM: SUBJECTIVITY IS CORRECT, EMOTION MUST BE DOWNSTREAM
+---------------------------------------------------------------------
+SkyrimNet's memory pipeline uses emotional-impact/mood information and generates first-person memories for individual NPCs.
+
+Subjective memories are desirable. A memory SHOULD contain the remembering NPC's interpretation, feelings, and adaptation.
+
+Critical distinction:
+World event = neutral/perceptible description of what happened.
+NPC memory = what this NPC believes, felt, learned, or now expects because of it.
+
+Bad conceptual pipeline:
+event -> predefined emotion -> memory interpretation
+
+Desired pipeline:
+event -> character-specific appraisal -> meaning -> mixed feelings/motives -> closest supported emotion metadata/tag
+
+The existing SkyrimNet emotion field can remain for structural compatibility. PersonalityUpgrade changes how the model arrives at it.
+
+20. PRIVATE THOUGHTS ARE THE IDEAL LOCATION FOR DEEP APPRAISAL
+--------------------------------------------------------------
+SkyrimNet already treats NPC thoughts as private cognition that is not heard by other characters and is stored in that NPC's own history.
+
+Therefore private thought generation is the ideal location for rich appraisal. The appraisal questions remain reasoning principles, not an output template.
+
+Thoughts should sound like the NPC's own inner voice, not clinical analysis.
+
+21. INTELENGINE STORY DM: CONFIRMED HIDDEN-MOTIVE LEAK
+------------------------------------------------------
+Inspection of IntelEngine's intel_story_dm.prompt found an explicit example equivalent to:
+"was caught following the player out of jealousy"
+
+This violates the design because "out of jealousy" exposes a hidden causal interpretation in world narration.
+
+It is acceptable for the simulation engine to use jealousy in private state/memories to select that NPC as a plausible follower.
+
+The resulting external event should instead say something like:
+"was caught following the player outside Whiterun"
+
+Optionally perceptible behavior may be included:
+"appeared flustered when confronted and fled"
+
+The hidden causal explanation should remain private unless revealed.
+
+Therefore intel_story_dm.prompt is a strong TARGETED OVERRIDE candidate.
+
+22. INTELENGINE NPC-TO-NPC STORY DM
+-----------------------------------
+intel_story_npc_dm.prompt is structurally closer to the desired model. It often records concrete actions such as confronting someone about stolen goods or being accused of theft.
+
+It also supports per-NPC knowledge isolation: one NPC may know a fact another does not, and information can propagate through communication.
+
+This is highly compatible with PersonalityUpgrade.
+
+However, categories such as betrayal, romantic tension, shared grudges, etc. may be used internally to select interesting interactions. That is acceptable as simulation metadata, but those labels must not automatically become objective persistent facts.
+
+Gossip must preserve attribution.
+
+If Aela says "Vignar ran because he's a coward," Ria should not receive "Vignar is a coward" as objective truth. A valid stored fact is closer to "Aela told Ria that she believed Vignar fled out of cowardice." Ria then interprets that claim using her own knowledge and psychology.
+
+Therefore intel_story_npc_dm.prompt is also a likely targeted override, though narrower than Story DM.
+
+23. INTELENGINE POLITICAL DM
+----------------------------
+intel_political_dm.prompt mostly produces concrete political/world events and is closer to acceptable neutral narration.
+
+It may use leader personality and relationships internally to choose actions. This is legitimate for an omniscient simulation engine.
+
+Again, private simulation cause must not automatically become public explanation.
+
+Example:
+Private cause: a cautious leader avoids escalation.
+Public event: "Whiterun rejected immediate military action and requested further negotiations."
+Not automatically: "Balgruuf rejected the proposal because his cautious personality made him fear escalation."
+
+Political mechanics may retain internal event-type labels such as betrayal if required. Natural-language world records should describe the underlying action neutrally, such as breaking an agreement, instead of forcing an observer's moral interpretation.
+
+A full intel_political_dm.prompt override should be avoided unless testing shows additive neutrality guidance is insufficient, because full overrides increase maintenance burden.
+
+24. WORLD_KNOWLEDGE MUST BE ESPECIALLY STRICT
+----------------------------------------------
+IntelEngine political/world knowledge can be treated as authoritative truth by downstream systems.
+
+Therefore subjective wording in world_knowledge is especially dangerous.
+
+Bad authoritative fact:
+"Ulfric cowardly abandoned his troops."
+
+Better:
+"Ulfric left the battlefield while Stormcloak forces remained engaged."
+
+Valid attributed judgment:
+"Galmar publicly accused Ulfric of cowardice after Ulfric left the battlefield."
+
+The last form records Galmar's judgment as an objective fact about what Galmar said, not as objective truth about Ulfric's character.
+
+25. EXISTING ADDON PACKAGING PATTERN
+------------------------------------
+IntelEngine-EmergentNPCConversations was inspected as a working addon example.
+
+It ships SkyrimNet prompt overrides using the same relative game path, for example:
+SKSE/Plugins/SkyrimNet/prompts/intel_story_npc_dm.prompt
+
+Its release directory mirrors that structure.
+
+This confirms that PersonalityUpgrade can selectively replace a named IntelEngine/SkyrimNet prompt by shipping the same relative path rather than editing upstream repositories directly.
+
+The addon also demonstrates a separate Papyrus override workflow: upstream sources are copied into an isolated build area, a specific source file is replaced, and the result is compiled.
+
+At present, no Papyrus change has been demonstrated as necessary for PersonalityUpgrade V1. The current design appears achievable primarily through prompt additions and targeted prompt overrides.
+
+26. LIKELY V1 FILE SHAPE
+------------------------
+Likely initial structure:
+
+SkyrimNet-PersonalityUpgrade/
+  source of truth.txt
+  SKSE/
+    Plugins/
+      SkyrimNet/
+        prompts/
+          submodules/
+            guidelines/
+              0600_psychological_realism.prompt
+              0610_epistemic_boundaries.prompt
+          intel_story_dm.prompt
+          intel_story_npc_dm.prompt
+
+intel_political_dm.prompt should only be overridden if implementation/testing demonstrates that additive neutrality guidance cannot control the relevant behavior.
+
+27. IMPLEMENTATION PRIORITY
+---------------------------
+V1 should prefer:
+1. Additive psychological-realism guideline.
+2. Additive epistemic/privacy-boundary guideline.
+3. Explicit player-no-canonical-personality rule.
+4. Targeted IntelEngine Story DM neutrality fix.
+5. Targeted NPC-to-NPC fact/gossip attribution fix.
+6. Test behavior before overriding additional large prompts.
+
+The intended result is not a scripted relationship system. It is a stricter information architecture plus deeper psychological reasoning layered onto SkyrimNet/IntelEngine's existing systems.
+
+28. UPSTREAM TREATMENT
+----------------------
+Treat SkyrimNet and IntelEngine as upstream/reference projects unless their extension architecture specifically requires otherwise.
+
+Prefer addon-owned files in this repository. Do not hack upstream merely for convenience.
+
+Use the smallest coherent override necessary when an upstream prompt directly violates the source-of-truth semantics.
+
+29. FINAL DESIGN SUMMARY
+------------------------
+The mod should make each NPC psychologically independent without making them artificially disagreeable.
+
+NPC true self:
+- personality sheet;
+- private memories;
+- private thoughts;
+- internal motives and interpretations.
+
+NPC model of another NPC:
+- observations;
+- shared experiences;
+- attributed statements;
+- hearsay/reputation;
+- memories;
+- personal inference.
+
+NPC model of player:
+- actual player words/actions;
+- personal experience;
+- reputation/hearsay;
+- inference;
+- no canonical player personality sheet.
+
+World/event record:
+- observable actions;
+- speech;
+- circumstances;
+- physical outcomes;
+- publicly verifiable facts;
+- perceptible emotional presentation where actually observable;
+- no un-attributed hidden motives, moral judgments, enduring personality conclusions, or imposed social meaning.
+
+Private psychology may cause an action without being exposed by the event record.
+Subjective claims are allowed when clearly attributed to the person who believes or says them.
+NPCs may naturally converge on similar conclusions without being forced into either uniformity or artificial diversity.
+Psychological changes should persist through accumulated impressions and affect later warmth, distance, curiosity, vulnerability, initiative, and other behavior.
+
+The final target is:
+
+A SkyrimNet psychology addon that keeps minds private, keeps shared events observationally grounded, lets each NPC independently interpret people and events through their own personality/history, and carries those interpretations forward naturally into thoughts, dialogue, memories, relationships, and behavior.
