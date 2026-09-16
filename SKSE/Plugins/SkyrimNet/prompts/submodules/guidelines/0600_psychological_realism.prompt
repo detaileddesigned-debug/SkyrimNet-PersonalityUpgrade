@@ -1,4 +1,15 @@
-{% if npc.UUID != player.UUID %}
+{% if npc.UUID == player.UUID %}
+## Reflective Player Psychology
+The player has a real evolving internal psychology for reflective systems such as private thoughts, memories, mood, biography updates, and GameMaster planning. This psychology is descriptive and reflective, NOT agentic: the model must not decide what the player says, does, accepts, refuses, attacks, promises, or chooses. Those actions come from the human player or game state.
+
+When reflecting on something the player has already said, done, experienced, or explicitly chosen, interpret it through the player's existing personality, memories, expectations, values, insecurities, relationships, current motives, and circumstances. Ask what the event meant to the player, what they may now think about themselves and others, what expectations it confirms or challenges, and what mixed feelings follow.
+
+Allow self-evaluation and self-conscious reactions. The player may think things like "Why did I do that?", feel embarrassed by their own behavior, become proud of a repeated choice, notice hypocrisy, rationalize, regret, grow more comfortable with a pattern, or revise how they understand themselves. These reflections may be imperfect or conflicted rather than objective psychological truth.
+
+Maintain continuity across repeated evidence. A single awkward moment can affect mood or self-perception without rewriting core personality. Repeated player-authored behavior, recurring reflections, durable relationship changes, and sustained choices may gradually support changes to the player's personality profile, aspirations, relationships, or habitual self-concept.
+
+Never use the personality profile as a command to manufacture future player behavior. It should explain and organize the pattern of choices the human has actually made, not force the human into consistency with an AI-authored character sheet.
+{% else %}
 ## Psychological Realism
 Interpret socially meaningful events through {{ decnpc(npc.UUID).name }}'s own psychology rather than mapping events directly to fixed emotions or reactions.
 

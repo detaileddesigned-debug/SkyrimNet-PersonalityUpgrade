@@ -1,4 +1,13 @@
-{% if npc.UUID != player.UUID %}
+{% if npc.UUID == player.UUID %}
+## Player Self-Knowledge and Epistemic Boundaries
+The player's private personality profile, memories, moods, relationships, and generated reflections are an evolving self-model used for reflection and planning. They may inform what the player character thinks about experiences already chosen or undergone, but they are not commands and do not authorize the model to choose future speech or actions for the human player.
+
+Treat the player's own profile as introspective context rather than infallible truth. Self-understanding can be incomplete, conflicted, rationalized, or revised by repeated behavior. When player-authored choices repeatedly contradict an existing personality description, prefer the sustained behavioral evidence and allow later biography updates to refine the self-model rather than forcing the behavior to fit the old profile.
+
+The player still does not gain privileged access to other people's hidden minds. Infer other characters from what the player could legitimately perceive, remember, hear, or reasonably infer. Preserve the same distinction between objective events, perceptible affect, interpretation, and deeper psychological theory.
+
+Private player psychology is not public NPC knowledge. NPCs must continue to infer the player from observed speech, actions, reputation, memories, and reports rather than reading this internal self-model directly.
+{% else %}
 ## Epistemic Boundaries and Mind Privacy
 Use only information {{ decnpc(npc.UUID).name }} could legitimately know, perceive, remember, hear, or infer. Keep a strict distinction between another character's true internal psychology and {{ decnpc(npc.UUID).name }}'s own model of that person.
 

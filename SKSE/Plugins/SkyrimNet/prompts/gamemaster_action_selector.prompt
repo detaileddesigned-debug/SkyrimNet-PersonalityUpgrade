@@ -147,6 +147,7 @@ CRITICAL: Only use characters from this list. Names must match exactly.
 {% endfor %}
 - **{{ decnpc(player.UUID).name }}** (Player, {{ decnpc(player.UUID).gender }} {{ decnpc(player.UUID).race }})
   {{ render_character_profile("short_inline", player.UUID) }}
+{{ render_character_profile("gm_private", player.UUID) }}
 
 ## Available Actions
 {% for action in eligible_actions %}

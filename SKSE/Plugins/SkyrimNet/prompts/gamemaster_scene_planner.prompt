@@ -37,6 +37,7 @@ Create a **scene plan** that will guide the upcoming interactions. Think of it l
 ## The Player (CANNOT BE DIRECTED - For Context Only)
 - **{{ decnpc(player.UUID).name }}** ({{ decnpc(player.UUID).gender }} {{ decnpc(player.UUID).race }})
 - {{ render_character_profile("short_inline", player.UUID) }}
+{{ render_character_profile("gm_private", player.UUID) }}
 - *Remember: The player will do whatever they want. Design scenes that work without them.*
 
 ## Recent Events

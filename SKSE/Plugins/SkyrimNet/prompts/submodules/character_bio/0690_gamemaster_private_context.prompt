@@ -1,6 +1,6 @@
-{% if render_mode == "gm_private" and not is_player(actorUUID) %}
+{% if render_mode == "gm_private" %}
 ### Private GameMaster Psychology — {{ decnpc(actorUUID).name }}
-This is omniscient planning context for the GameMaster only. Use it to choose psychologically meaningful situations, pairings, tensions, and opportunities. Do NOT assume other characters know this information, and do NOT reveal hidden motives, memories, or relationship interpretations in narration or dialogue unless they become observable or are explicitly communicated.
+This is omniscient planning context for the GameMaster only. Use it to choose psychologically meaningful situations, pairings, tensions, and opportunities. Do NOT assume other characters know this information, and do NOT reveal hidden motives, memories, or relationship interpretations in narration or dialogue unless they become observable or are explicitly communicated.{% if is_player(actorUUID) %} For the player, use this only to choose situations that may be psychologically relevant; NEVER use it to decide, predict as certain, or author what the player will say, do, accept, refuse, or choose.{% endif %}
 
 **Psychological tendencies**
 {{ render_character_profile("bio_personality", actorUUID) }}
